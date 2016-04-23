@@ -9,7 +9,7 @@ canvas.onmousedown = function(evt) {
     x: evt.offsetX,
     y: evt.offsetY
   };
-  console.info({ mouse: pos });
+  console.info({ mouse: JSON.stringify(pos) });
   app.onMouse(pos);
 };
 
@@ -32,7 +32,7 @@ socket.on('connect', function() {
 });
 
 socket.on('message', function(msg) {
-  console.info({ message: msg });
+  console.info({ message: JSON.stringify(msg) });
   if (!msg.protocol) {
     console.warn({ fail: 'protocol is missing' });
     return;
