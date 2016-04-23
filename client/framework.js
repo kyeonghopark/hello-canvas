@@ -21,9 +21,30 @@ window.onkeydown = function(evt) {
 };
 
 
+var sendMessage = function(protocol, msg) {
+  msg.protocol = protocol;
+  socket.send(JSON.stringify(msg));
+}
+
+
+socket.on('connect', function() {
+  console.info({ socket: 'connected' });
+});
+
+socket.on('message', function(msg) {
+  console.info({ message: msg });
+  if (!msg.protocol) {
+    console.warn({ fail: 'protocol is missing' });
+    return;
+  }
+  app.onMessage(msg.protocol, msg);
+});
+
+
 var initialize = function() {
   nextTimeout = 100;
   app.initialize();
+  socket.connect();
 };
 
 

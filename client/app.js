@@ -57,6 +57,11 @@ app.onKey = function(key) {
 };
 
 
+app.onMessage = function(protocol, msg) {
+    console.warn({ 'unknown protocol': msg.protocol });
+};
+
+
 app.drawScreen = function() {
   context.fillStyle = 'lightgreen';
   context.fillRect(0, 0, canvas.width, canvas.height);
