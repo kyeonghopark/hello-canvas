@@ -54,11 +54,19 @@ app.onKey = function(key) {
     case 40: app.direction = 'down'; break;
     default: app.direction = 'none'; break;
   }
+
+  sendMessage('TextColorRequest', {
+    currentColor: app.textColor
+  });
 };
 
 
 app.onMessage = function(protocol, msg) {
+  if (protocol == 'TextColorResponse') {
+    app.textColor = msg.textColor;
+  } else {
     console.warn({ 'unknown protocol': msg.protocol });
+  }
 };
 
 

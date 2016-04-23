@@ -30,6 +30,22 @@ var onHello = function(socketsAll, socket, msg) {
 };
 
 
+var onTextColorRequest = function(socketsAll, socket, msg) {
+  var kColors = ['red', 'green', 'blue', 'orange', 'yellow', 'purple'];
+
+  var nextColor = kColors[0];
+  var currentIndex = kColors.indexOf(msg.currentColor);
+  if (currentIndex >= 0) {
+    nextColor = kColors[(currentIndex + 1) % kColors.length];
+  }
+
+  socket.send({
+    protocol: 'TextColorResponse',
+    textColor: nextColor
+  });
+};
+
+
 var onBye = function(socketsAll, socket, msg) {
   socket.send({
     protocol: 'Bye'
@@ -43,6 +59,7 @@ module.exports = {
   onClientDisconnect: onClientDisconnect,
   on: {
     Hello: onHello,
+    TextColorRequest: onTextColorRequest,
     Bye: onBye
   }
 };
