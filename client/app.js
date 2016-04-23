@@ -8,6 +8,7 @@ var app = {
   },
   direction: 'none',
   event: 'none',
+  textColor: 'red',
   tickDisplay: ''
 };
 
@@ -60,7 +61,7 @@ app.drawScreen = function() {
   context.fillStyle = 'lightgreen';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  context.fillStyle = 'red';
+  context.fillStyle = app.textColor;
   context.fillText(app.event, app.pos.x, app.pos.y);
 
   context.fillStyle = 'blue';
