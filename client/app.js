@@ -65,7 +65,7 @@ app.onMessage = function(protocol, msg) {
   if (protocol == 'TextColorResponse') {
     app.textColor = msg.textColor;
   } else {
-    console.warn({ 'unknown protocol': msg.protocol });
+    console.warn({ 'unknown protocol': protocol });
   }
 };
 
